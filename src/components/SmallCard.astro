@@ -1,0 +1,67 @@
+---
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+
+export interface Props {
+	content: {
+		id: number;
+		title: string;
+		url: string;
+		heroImage: string;
+		pubDate: string;
+		type: string;
+	};
+}
+
+const {
+	class: className,
+	content: { id, heroImage, title, url, pubDate, type },
+	...props
+} = Astro.props;
+---
+
+<div
+	class:list={["h-64 grid grid-cols-5 img-clip bg-neutral-200", className]}
+	{...props}
+>
+	<div class="col-span-3 flex flex-col ml-5 justify-between">
+		<div
+			class="text-stroke font-black font-number text-7xl text-transparent opacity-5 mt-1"
+		>
+			{id < 10 ? "0" + id : id}
+		</div>
+		<div>
+			<p class="text-xs font-number mb-3 text-neutral-500">
+				<span class="font-medium">{pubDate}</span>
+				-
+				<span
+					class="font-bold bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
+					>{type}</span
+				>
+			</p>
+			<a href={url}>
+				<h2
+					class="text-2xl text-neutral-800 font-semibold leading-7 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+				>
+					{title}
+				</h2>
+			</a>
+		</div>
+	</div>
+	<a href={url} class="col-span-2 overflow-hidden">
+		<img
+			class="h-full object-cover hover:scale-105 duration-500"
+			src={heroImage}
+			alt="image"
+		/>
+	</a>
+</div>
+
+<style>
+	.img-clip {
+		background-repeat: no-repeat;
+		clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+	}
+	.text-stroke {
+		-webkit-text-stroke: 2px #262626;
+	}
+</style>

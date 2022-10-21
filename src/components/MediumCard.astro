@@ -1,0 +1,54 @@
+---
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+
+export interface Props {
+	content: {
+		title: string;
+		description: string;
+		heroImage: string;
+		pubDate: string;
+		type: string;
+	};
+}
+
+const {
+	class: className,
+	content: { heroImage, title, description, pubDate, type },
+	...props
+} = Astro.props;
+---
+
+<div class:list={["grid grid-cols-5 h-full gap-2", className]} {...props}>
+	<div class="col-span-3">
+		<h2
+			class="text-2xl font-semibold leading-7 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+		>
+			{title}
+		</h2>
+		<p class="text-sm font-medium text-neutral-500 mb-4">
+			{description}
+		</p>
+		<div class="text-xs font-number">
+			<span class="font-medium">{pubDate}</span>
+			-
+			<span
+				class="font-bold bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
+				>{type}</span
+			>
+		</div>
+	</div>
+	<div class="img-clip bg-cover mb-4 col-span-2 h-full">
+		<img
+			class="h-full object-cover hover:scale-105 duration-500 overflow-hidden"
+			src={heroImage}
+			alt="image"
+		/>
+	</div>
+</div>
+
+<style>
+	.img-clip {
+		background-repeat: no-repeat;
+		clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+	}
+</style>

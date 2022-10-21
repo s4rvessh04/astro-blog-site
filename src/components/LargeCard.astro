@@ -1,0 +1,58 @@
+---
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+
+export interface Props {
+	content: {
+		title: string;
+		description: string;
+		heroImage: string;
+		pubDate: string;
+		type: string;
+	};
+}
+
+const {
+	class: className,
+	content: { heroImage, title, description, pubDate, type },
+	...props
+} = Astro.props;
+---
+
+<div class:list={["flex flex-col h-max", className]} {...props}>
+	<div class="img-clip mb-4 w-full overflow-hidden">
+		<img class="hover:scale-105 duration-500" src={heroImage} alt="image" />
+	</div>
+	<div class="">
+		<h1
+			class="text-4xl font-bold leading-10 mb-3 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+		>
+			{title}
+		</h1>
+		<p class="text-base font-medium text-neutral-500 mb-3.5">
+			{description}
+		</p>
+		<div class="text-xs font-number">
+			<time datetime={pubDate} class="font-medium">
+				{
+					new Date(pubDate).toLocaleDateString("en-us", {
+						year: "numeric",
+						month: "short",
+						day: "numeric",
+					})
+				}
+			</time>
+			-
+			<span
+				class="font-bold bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
+				>{type}</span
+			>
+		</div>
+	</div>
+</div>
+
+<style>
+	.img-clip {
+		background-repeat: no-repeat;
+		clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+	}
+</style>

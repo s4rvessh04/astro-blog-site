@@ -1,0 +1,74 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LargeCard from "../components/LargeCard.astro";
+import Container from "../components/Container.astro";
+import MediumCard from "../components/MediumCard.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Banner from "../components/Banner.astro";
+
+const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
+	(a, b) =>
+		new Date(b.frontmatter.pubDate).valueOf() -
+		new Date(a.frontmatter.pubDate).valueOf()
+);
+
+const post1 = posts.at(2);
+const post2 = posts.at(0);
+const post3 = posts.at(1);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="font-body text-neutral-900 min-h-screen flex flex-col">
+		<Header title={SITE_TITLE} />
+		<main class="py-10 px-10 flex-1">
+			<Container>
+				<div class="grid grid-cols-2 gap-x-10">
+					<a href={post1?.url}>
+						<LargeCard
+							content={{
+								title: post1?.frontmatter.title,
+								description: post1?.frontmatter.description,
+								pubDate: post1?.frontmatter.pubDate,
+								heroImage: post1?.frontmatter.heroImage,
+								type: post1?.frontmatter.type,
+							}}
+						/>
+					</a>
+					<div class="grid gap-y-10 grid-rows-2">
+						<a href={post2?.url}>
+							<MediumCard
+								content={{
+									title: post2?.frontmatter.title,
+									description: post2?.frontmatter.description,
+									pubDate: post2?.frontmatter.pubDate,
+									heroImage: post2?.frontmatter.heroImage,
+									type: post2?.frontmatter.type,
+								}}
+							/>
+						</a>
+						<a href={post3?.url}>
+							<MediumCard
+								content={{
+									title: post3?.frontmatter.title,
+									description: post3?.frontmatter.description,
+									pubDate: post3?.frontmatter.pubDate,
+									heroImage: post3?.frontmatter.heroImage,
+									type: post3?.frontmatter.type,
+								}}
+							/>
+						</a>
+					</div>
+				</div>
+			</Container>
+		</main>
+		<Banner />
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,95 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Container from "../components/Container.astro";
+
+export interface Props {
+	content: {
+		title: string;
+		description: string;
+		pubDate: string;
+		heroImage: string;
+		type: string;
+		updatedDate?: string;
+	};
+}
+
+const {
+	content: { title, description, pubDate, heroImage, type },
+} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.img-clip {
+				background-repeat: no-repeat;
+				clip-path: polygon(
+					8% 0,
+					100% 0,
+					100% 84%,
+					92% 100%,
+					0 100%,
+					0 16%
+				);
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<Container>
+			<main class="m-auto w-3/4">
+				<article>
+					<div class="h-max px-10 py-10">
+						<div
+							class="font-number justify-between flex items-baseline mb-3.5"
+						>
+							<span
+								class="font-bold text-base bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
+								>{type}</span
+							>
+							<time
+								datetime={pubDate}
+								class="font-medium text-xs text-neutral-500"
+							>
+								{
+									new Date(pubDate).toLocaleDateString(
+										"en-us",
+										{
+											year: "numeric",
+											month: "short",
+											day: "numeric",
+										}
+									)
+								}
+							</time>
+						</div>
+						<div class="w-4/5">
+							<h1 class="font-bold text-4xl mb-3">{title}</h1>
+							<p
+								class="text-base font-medium text-neutral-500 mb-6"
+							>
+								{description}
+							</p>
+						</div>
+						<img
+							class="object-cover w-full h-96 img-clip"
+							src={heroImage}
+							alt="image"
+						/>
+					</div>
+					<hr class="border-neutral-900/10 border" />
+					<div
+						class="h-max px-10 py-10 font-normal text-lg leading-7"
+					>
+						<slot />
+					</div>
+				</article>
+			</main>
+		</Container>
+		<Footer />
+	</body>
+</html>
