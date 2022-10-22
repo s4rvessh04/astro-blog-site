@@ -3,16 +3,18 @@ import HeaderLink from "./HeaderLink.astro";
 import { SITE_NAME } from "../config";
 ---
 
-<header class="px-10 py-4 text-base italic border-b border-neutral-200">
-	<div class="flex items-center justify-between container m-auto">
+<header
+	class="lg:px-10 px-2 md:py-4 py-2 text-base italic border-b border-neutral-200"
+>
+	<div class="lg:flex items-center justify-between container m-auto">
 		<a href="/">
 			<h3
-				class="font-bold hover:text-indigo-500 hover:underline decoration-2 cursor-pointer"
+				class="lg:mb-0 mb-2 font-bold lg:text-base text-sm hover:text-indigo-500 hover:underline decoration-2 cursor-pointer"
 			>
 				{SITE_NAME}
 			</h3>
 		</a>
-		<nav class="font-medium flex gap-x-5">
+		<nav class="font-medium text-base flex lg:gap-x-5 justify-around">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/favorites">Favorites</HeaderLink>
 			<HeaderLink href="/timemachine">TimeMachine</HeaderLink>

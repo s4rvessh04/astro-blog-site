@@ -20,17 +20,20 @@ const {
 ---
 
 <div
-	class:list={["h-64 grid grid-cols-5 img-clip bg-neutral-200", className]}
+	class:list={[
+		"md:h-64 h-48 grid grid-cols-5 img-clip bg-neutral-200",
+		className,
+	]}
 	{...props}
 >
-	<div class="col-span-3 flex flex-col ml-5 justify-between">
+	<div class="col-span-3 flex flex-col md:ml-5 ml-2 justify-between">
 		<div
-			class="text-stroke font-black font-number text-7xl text-transparent opacity-5 mt-1"
+			class="text-stroke font-black font-number md:text-7xl text-6xl text-transparent opacity-5 mt-1"
 		>
 			{id < 10 ? "0" + id : id}
 		</div>
 		<div>
-			<p class="text-xs font-number mb-3 text-neutral-500">
+			<p class="text-xs font-number md:mb-3 mb-1.5 text-neutral-500">
 				<span class="font-medium">{pubDate}</span>
 				-
 				<span
@@ -40,7 +43,7 @@ const {
 			</p>
 			<a href={url}>
 				<h2
-					class="text-2xl text-neutral-800 font-semibold leading-7 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+					class="md:text-2xl text-lg text-neutral-800 font-semibold md:leading-7 leading-5 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
 				>
 					{title}
 				</h2>

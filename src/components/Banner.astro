@@ -3,19 +3,21 @@ import Button from "./Button.astro";
 import Container from "./Container.astro";
 ---
 
-<Container class={"px-10 py-10 mb-10"}>
-	<div class="img-clip w-full h-64 bg-neutral-900 relative">
+<Container class={"lg:px-10 md:px-0 px-2 lg:py-10 py-5 md:mb-10 mb-6"}>
+	<div class="img-clip w-full lg:h-64 md:h-48 h-36 bg-neutral-900 relative">
 		<h1
-			class="text-stroke text-transparent text-9xl absolute -top-14 font-bold italic"
+			class="text-stroke text-transparent lg:text-9xl md:text-7xl text-5xl absolute lg:-top-14 md:-top-7 -top-5 font-bold italic"
 		>
 			SOCIALS
 		</h1>
 		<h1
-			class="text-stroke text-transparent text-9xl absolute -bottom-14 right-0 font-bold italic"
+			class="text-stroke text-transparent lg:text-9xl md:text-7xl text-5xl absolute lg:-bottom-14 md:-bottom-7 -bottom-5 right-0 font-bold italic"
 		>
 			SOCIALS
 		</h1>
-		<div class="w-full h-full flex gap-x-10 justify-center items-center">
+		<div
+			class="w-full h-full flex lg:gap-x-10 md:gap-x-8 md:justify-center justify-evenly items-center"
+		>
 			<Button icon="github" />
 			<Button icon="instagram" />
 			<Button icon="linkedin" />

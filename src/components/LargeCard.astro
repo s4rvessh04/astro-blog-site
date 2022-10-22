@@ -19,16 +19,16 @@ const {
 ---
 
 <div class:list={["flex flex-col h-max", className]} {...props}>
-	<div class="img-clip mb-4 w-full overflow-hidden">
+	<div class="img-clip mb-4 w-full lg:h-auto md:h-96 h-60 overflow-hidden">
 		<img class="hover:scale-105 duration-500" src={heroImage} alt="image" />
 	</div>
 	<div class="">
 		<h1
-			class="text-4xl font-bold leading-10 mb-3 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+			class="md:text-4xl text-2xl font-bold lg:leading-10 leading-7 mb-3 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
 		>
 			{title}
 		</h1>
-		<p class="text-base font-medium text-neutral-500 mb-3.5">
+		<p class="md:text-base text-sm font-medium text-neutral-500 mb-3.5">
 			{description}
 		</p>
 		<div class="text-xs font-number">

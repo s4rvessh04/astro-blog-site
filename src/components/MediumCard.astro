@@ -18,10 +18,16 @@ const {
 } = Astro.props;
 ---
 
-<div class:list={["grid grid-cols-5 h-full gap-2", className]} {...props}>
+<div
+	class:list={[
+		"md:grid md:grid-cols-5 flex flex-col flex-col-reverse lg:h-full md:h-60 min-h-52 gap-2",
+		className,
+	]}
+	{...props}
+>
 	<div class="col-span-3">
 		<h2
-			class="text-2xl font-semibold leading-7 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+			class="md:text-2xl text-xl font-semibold md:leading-7 leading-6 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
 		>
 			{title}
 		</h2>
@@ -37,9 +43,9 @@ const {
 			>
 		</div>
 	</div>
-	<div class="img-clip bg-cover mb-4 col-span-2 h-full">
+	<div class="img-clip bg-cover mb-4 col-span-2 lg:h-full h-56">
 		<img
-			class="h-full object-cover hover:scale-105 duration-500 overflow-hidden"
+			class="md:h-full h-auto object-cover hover:scale-105 duration-500 overflow-hidden"
 			src={heroImage}
 			alt="image"
 		/>

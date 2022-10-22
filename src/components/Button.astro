@@ -18,19 +18,16 @@ function getIcon(name: string): ButtonProperties {
 		case "github":
 			return {
 				icon: `
-                <svg
-					width="50"
-					height="50"
-					viewBox="0 0 50 50"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M25 8.34845C15.3188 8.34845 7.47034 16.1969 7.47034 25.8781C7.47034 33.6234 12.4922 40.1938 19.4594 42.5109C20.336 42.6719 20.6563 42.1297 20.6563 41.6672C20.6563 41.25 20.6407 39.8672 20.6313 38.4047C15.7563 39.4641 14.7266 36.3375 14.7266 36.3375C13.9282 34.3125 12.7797 33.7734 12.7797 33.7734C11.186 32.6859 12.9 32.7078 12.9 32.7078C14.6594 32.8297 15.5875 34.5141 15.5875 34.5141C17.1516 37.1938 19.6922 36.4188 20.6891 35.9688C20.8485 34.8391 21.3016 34.0641 21.8016 33.6281C17.911 33.1859 13.8172 31.6813 13.8172 24.9641C13.8172 23.0484 14.5016 21.4875 15.6203 20.2594C15.4422 19.8141 14.8375 18.0313 15.7938 15.6188C15.7938 15.6188 17.2641 15.1484 20.6141 17.4156C22.011 17.025 23.511 16.8328 25 16.8266C26.4891 16.8328 27.9891 17.0281 29.3891 17.4188C32.7328 15.1484 34.2063 15.6219 34.2063 15.6219C35.1641 18.0359 34.561 19.8172 34.3813 20.2609C35.5047 21.4875 36.1828 23.05 36.1828 24.9656C36.1828 31.7 32.0828 33.1828 28.1782 33.6172C28.8094 34.1609 29.3672 35.2266 29.3672 36.8609C29.3672 39.2047 29.3438 41.0938 29.3438 41.6719C29.3438 42.1391 29.6625 42.6844 30.55 42.5125C37.511 40.1906 42.5282 33.6219 42.5282 25.8797C42.5282 16.2 34.6797 8.35001 24.9985 8.35001L25 8.34845Z"
-						fill="#D4D4D4"
-					/>
-				</svg>
-			`,
+					<svg
+						stroke="currentColor"
+						fill="currentColor"
+						stroke-width="0"
+						viewBox="0 0 16 16"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+					</svg>
+				`,
 				className:
 					"bg-gradient-to-br from-neutral-700/30 to-neutral-800/30 text-neutral-300",
 				link: "https://www.github.com/sarveshrane2000",
@@ -39,8 +36,6 @@ function getIcon(name: string): ButtonProperties {
 			return {
 				icon: `
 					<svg
-						width="40"
-						height="40"
 						viewBox="0 0 40 40"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -59,8 +54,6 @@ function getIcon(name: string): ButtonProperties {
 			return {
 				icon: `
 					<svg
-						width="40"
-						height="40"
 						viewBox="0 0 40 40"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -79,8 +72,6 @@ function getIcon(name: string): ButtonProperties {
 			return {
 				icon: `
 					<svg
-						width="40"
-						height="40"
 						viewBox="0 0 40 40"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +90,6 @@ function getIcon(name: string): ButtonProperties {
 			return {
 				icon: `
                 <svg
-					width="50"
-					height="50"
 					viewBox="0 0 50 50"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
@@ -127,11 +116,15 @@ function getIcon(name: string): ButtonProperties {
 >
 	<div
 		class:list={[
-			"img-clip h-28 w-28 flex items-center justify-center",
+			"img-clip lg:h-28 md:h-24 h-20 lg:w-28 md:w-24 w-20 flex items-center justify-center",
 			getIcon(icon).className,
 		]}
 	>
-		<div set:html={getIcon(icon).icon}></div>
+		<div
+			set:html={getIcon(icon).icon}
+			class="lg:h-12 md:h-8 h-6 lg:w-12 md:w-8 w-6 flex justify-center items-center"
+		>
+		</div>
 	</div>
 </a>
 
