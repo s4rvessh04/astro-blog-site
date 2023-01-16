@@ -4,19 +4,20 @@ import { SITE_NAME } from "../config";
 ---
 
 <header
-	class="lg:px-10 px-2 md:py-4 py-2 text-base italic border-b border-neutral-200"
+	class="lg:px-10 px-2 md:py-4 py-3 text-base border-b border-neutral-200"
 >
-	<div class="lg:flex items-center justify-between container m-auto">
+	<div class="flex items-center justify-between container m-auto">
 		<a href="/">
 			<h3
-				class="lg:mb-0 mb-2 font-bold lg:text-base text-sm hover:text-indigo-500 hover:underline decoration-2 cursor-pointer"
+				class="font-bold lg:text-base text-sm hover:text-indigo-500 hover:underline decoration-2 cursor-pointer"
 			>
 				{SITE_NAME}
 			</h3>
 		</a>
-		<nav class="font-medium text-base flex lg:gap-x-5 justify-around">
+		<nav
+			class="font-medium lg:text-base text-sm flex gap-x-5 justify-around"
+		>
 			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/favorites">Favorites</HeaderLink>
 			<HeaderLink href="/timemachine">TimeMachine</HeaderLink>
 		</nav>
 	</div>

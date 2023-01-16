@@ -116,13 +116,13 @@ function getIcon(name: string): ButtonProperties {
 >
 	<div
 		class:list={[
-			"img-clip lg:h-28 md:h-24 h-20 lg:w-28 md:w-24 w-20 flex items-center justify-center",
+			"md:rounded-xl rounded-lg lg:h-28 md:h-24 h-20 lg:w-28 md:w-24 w-20 flex items-center justify-center",
 			getIcon(icon).className,
 		]}
 	>
 		<div
 			set:html={getIcon(icon).icon}
-			class="lg:h-12 md:h-8 h-6 lg:w-12 md:w-8 w-6 flex justify-center items-center"
+			class="lg:h-12 h-8 lg:w-12 w-8 flex justify-center items-center"
 		>
 		</div>
 	</div>
