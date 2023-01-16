@@ -10,7 +10,7 @@ const isActive = href === Astro.url.pathname;
 	href={href}
 	class:list={[
 		className,
-		"hover:underline underline-offset-4 hover:decoration-indigo-500",
+		"hover:underline lg:underline-offset-8 underline-offset-4 hover:decoration-indigo-500",
 		{
 			"underline decoration-2 decoration-indigo-500": isActive,
 		},
