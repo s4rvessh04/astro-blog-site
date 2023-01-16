@@ -1,4 +1,5 @@
 ---
+import { Image } from "@astrojs/image/components";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -23,37 +24,23 @@ const {
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			.img-clip {
-				background-repeat: no-repeat;
-				clip-path: polygon(
-					8% 0,
-					100% 0,
-					100% 84%,
-					92% 100%,
-					0 100%,
-					0 16%
-				);
-			}
-		</style>
 	</head>
-
 	<body>
 		<Header />
 		<Container>
 			<main class="m-auto lg:w-3/4 w-full">
-				<article class="md:px-0 px-2">
+				<div class="md:px-0 px-2">
 					<div class="h-max lg:px-10 lg:py-10 py-5">
 						<div
-							class="font-number justify-between flex items-baseline md:mb-3.5 mb-1.5"
+							class="font-number justify-between flex items-center tracking-wide md:mb-3 mb-2"
 						>
 							<span
-								class="font-bold text-base bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
+								class="font-bold md:text-base text-sm bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
 								>{type}</span
 							>
 							<time
 								datetime={pubDate}
-								class="font-medium text-xs text-neutral-500"
+								class="font-semibold md:text-sm text-xs text-neutral-500"
 							>
 								{
 									new Date(pubDate).toLocaleDateString(
@@ -67,31 +54,34 @@ const {
 								}
 							</time>
 						</div>
-						<div class="lg:w-4/5 w-full">
+						<div class="md:w-4/5 w-full">
 							<h1
-								class="font-bold md:text-4xl text-3xl md:mb-3 mb-2"
+								class="md:text-4xl text-2xl font-bold tracking-tight leading-tight md:mb-4 mb-2"
 							>
 								{title}
 							</h1>
 							<p
-								class="text-base font-medium text-neutral-500 md:mb-6 mb-4"
+								class="md:text-xl text-md font-medium text-neutral-500 mb-6 leading-normal"
 							>
 								{description}
 							</p>
 						</div>
-						<img
-							class="object-cover w-full md:h-96 h-72 img-clip"
+						<Image
+							class="md:rounded-xl rounded-lg md:mb-4 mb-2 w-full object-cover object-center h-auto"
 							src={heroImage}
-							alt="image"
+							format={"webp"}
+							height={1000}
+							aspectRatio={16 / 9}
+							alt="banner-hero-img"
 						/>
 					</div>
-					<hr class="border-neutral-900/10 border" />
-					<div
-						class="h-max lg:px-10 lg:py-10 py-5 font-normal lg:text-lg text-base lg:leading-7"
+					<hr class="divide-neutral-200 divide" />
+					<article
+						class="min-w-full lg:px-10 lg:py-5 py-5 prose prose-p:tracking-wide prose-p:leading-normal prose-headings:mb-2"
 					>
 						<slot />
-					</div>
-				</article>
+					</article>
+				</div>
 			</main>
 		</Container>
 		<Footer />

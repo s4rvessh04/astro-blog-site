@@ -1,4 +1,6 @@
 ---
+import { Image } from "@astrojs/image/components";
+
 export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
 
 export interface Props {
@@ -20,21 +22,23 @@ const {
 
 <div
 	class:list={[
-		"md:grid md:grid-cols-5 flex flex-col flex-col-reverse lg:h-full md:h-60 min-h-52 gap-2",
+		"md:grid md:grid-cols-5 flex md:flex-row flex-col-reverse justify-between justify-between lg:gap-6 group",
 		className,
 	]}
 	{...props}
 >
 	<div class="col-span-3">
 		<h2
-			class="md:text-2xl text-xl font-semibold md:leading-7 leading-6 mb-2.5 hover:underline decoration-blue-700 hover:text-blue-700 underline-offset-2"
+			class="text-2xl md:leading-7 leading-tight font-bold tracking-tight md:mb-2 mb-1 hover:underline decoration-4 decoration-purple-500 hover:text-purple-700"
 		>
 			{title}
 		</h2>
-		<p class="text-sm font-medium text-neutral-500 mb-4">
+		<p
+			class="md:text-base text-md font-medium text-neutral-500 mb-5 leading-snug"
+		>
 			{description}
 		</p>
-		<div class="text-xs font-number">
+		<div class="text-xs tracking-wide font-number">
 			<span class="font-medium">{pubDate}</span>
 			-
 			<span
@@ -43,11 +47,16 @@ const {
 			>
 		</div>
 	</div>
-	<div class="img-clip bg-cover mb-4 col-span-2 lg:h-full h-56">
-		<img
-			class="md:h-full h-auto object-cover hover:scale-105 duration-500 overflow-hidden"
+	<div
+		class="col-span-2 rounded-lg mb-4 lg:h-60 md:h-72 h-48 overflow-hidden group-hover:shadow-lg duration-150"
+	>
+		<Image
+			class="group-hover:scale-105 duration-300 h-full object-cover object-center lg:aspect-[1/1] aspect-[16/9]"
 			src={heroImage}
 			alt="image"
+			height={700}
+			aspectRatio={16 / 9}
+			format={"webp"}
 		/>
 	</div>
 </div>
