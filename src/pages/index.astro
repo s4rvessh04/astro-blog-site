@@ -15,24 +15,38 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
 		new Date(a.frontmatter.pubDate).valueOf()
 );
 
-const post1 = posts.at(2);
-const post2 = posts.at(0);
-const post3 = posts.at(1);
+const post1 = posts.at(0);
+const post2 = posts.at(1);
+const post3 = posts.at(2);
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="overflow-x-hidden">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<link
+			rel="preload"
+			href="/Mona Sans/Mona-Sans.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/Hubot Sans/Hubot-Sans.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 	</head>
 	<body
-		class="font-body text-neutral-900 min-h-screen flex flex-col overflow-x-hidden"
+		class="font-body text-neutral-900 min-h-screen flex flex-col overflow-x-hidden antialiased"
 	>
 		<Header title={SITE_TITLE} />
 		<main class="lg:px-10 md:px-4 px-2 lg:py-10 py-5 flex-1">
 			<Container>
 				<div
-					class="grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-0 gap-y-10"
+					class="grid lg:grid-cols-2 grid-cols-1 lg:gap-x-10 lg:gap-y-0 gap-y-10"
 				>
 					<a href={post1?.url}>
 						<LargeCard
@@ -45,9 +59,7 @@ const post3 = posts.at(1);
 							}}
 						/>
 					</a>
-					<div
-						class="grid lg:gap-y-10 md:gap-y-5 gap-y-10 lg:grid-rows-2"
-					>
+					<div class="flex flex-col space-y-10">
 						<a href={post2?.url}>
 							<MediumCard
 								content={{
