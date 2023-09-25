@@ -1,10 +1,9 @@
 ---
-layout: "../../layouts/BlogPost.astro"
-title: "Create Hobbies."
-description: "There might be times when you don't have much to do or have too much to do. Having hobbies can help you deal with that part of your life."
-pubDate: "Jan 16 2023"
-heroImage: "/images/create-hobbies.jpg"
-type: "Lifestyle"
+title: "Create Hobbies"
+description: "Create hobbies to avoid procrastination and to be more productive."
+publishDate: "16 Jan 2023"
+tags: ["lifestyle", "productivity"]
+ogImage: "/social-card.png"
 ---
 
 > You are either too busy for other things or too free for nothing. \--**Myself**

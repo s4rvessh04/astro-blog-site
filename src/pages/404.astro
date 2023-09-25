@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+
+import PageLayout from "@/layouts/Base";
+import astronautConfused from "@/assets/astronaut-confused.png";
+
+const meta = {
+	title: "Oops! You found a missing page!",
+	description: "Oops! It looks like this page is lost in space!",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-6">404 | Oops something went wrong</h1>
+	<p class="mb-8">Please use the navigation to find your way back</p>
+	<div class="grid justify-center">
+		<Image
+			class="h-[500px] w-[500px] rotate-12"
+			src={astronautConfused}
+			alt="Confused Astronaut"
+			loading="eager"
+		/>
+	</div>
+</PageLayout>
