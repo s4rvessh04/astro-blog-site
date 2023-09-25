@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon";
+
+const socialLinks = [
+	{
+		name: "ri:github-fill",
+		friendlyName: "Github",
+		link: "https://github.com/s4rvessh04",
+	},
+	{
+		name: "ri:twitter-fill",
+		friendlyName: "X",
+		link: "https://x.com/sarvessh_",
+	},
+	{
+		name: "ri:linkedin-box-fill",
+		friendlyName: "LinkedIn",
+		link: "https://www.linkedin.com/in/sarvesh-rane-80452522a",
+	},
+	{
+		name: "ri:mail-fill",
+		friendlyName: "email",
+		link: "mailto:sarveshrane2000.portfolio-site@gmail.com",
+	},
+];
+---
+
+<div class="flex flex-wrap items-end gap-x-4">
+	<p>Find me on</p>
+	<ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+		{
+			socialLinks.map(({ link, name, friendlyName }) => {
+				const isEmail = name.includes("email") || friendlyName.toLowerCase().includes("email");
+				return (
+					<li class="flex">
+						<a
+							class="inline-block p-1 sm:hover:text-link"
+							href={link}
+							target="_blank"
+							rel={`noopener noreferrer me ${isEmail ? "authn" : ""}`}
+						>
+							<Icon class="h-6 w-6" name={name} aria-hidden="true" focusable="false" />
+							<span class="sr-only">{friendlyName}</span>
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>

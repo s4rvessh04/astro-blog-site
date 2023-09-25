@@ -1,89 +1,71 @@
 ---
-import { Image } from "@astrojs/image/components";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import Container from "../components/Container.astro";
+import type { CollectionEntry } from "astro:content";
 
-export interface Props {
-	content: {
-		title: string;
-		description: string;
-		pubDate: string;
-		heroImage: string;
-		type: string;
-		updatedDate?: string;
-	};
+import BaseLayout from "./Base.astro";
+import BlogHero from "@/components/blog/Hero";
+import TOC from "@/components/blog/TOC";
+
+interface Props {
+	post: CollectionEntry<"post">;
 }
 
+const { post } = Astro.props;
 const {
-	content: { title, description, pubDate, heroImage, type },
-} = Astro.props;
+	data: { title, description, ogImage, publishDate, updatedDate },
+	slug,
+} = post;
+const socialImage = ogImage ?? `/og-image/${slug}.png`;
+const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
+const { headings } = await post.render();
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-	<body>
-		<Header />
-		<Container>
-			<main class="m-auto lg:w-3/4 w-full">
-				<div class="md:px-0 px-2">
-					<div class="h-max lg:px-10 lg:py-10 py-5">
-						<div
-							class="font-number justify-between flex items-center tracking-wide md:mb-3 mb-2"
-						>
-							<span
-								class="font-bold md:text-base text-sm bg-clip-text text-transparent bg-gradient-to-br from-rose-700 via-violet-600 to-indigo-700"
-								>{type}</span
-							>
-							<time
-								datetime={pubDate}
-								class="font-semibold md:text-sm text-xs text-neutral-500"
-							>
-								{
-									new Date(pubDate).toLocaleDateString(
-										"en-us",
-										{
-											year: "numeric",
-											month: "short",
-											day: "numeric",
-										}
-									)
-								}
-							</time>
-						</div>
-						<div class="md:w-4/5 w-full">
-							<h1
-								class="md:text-4xl text-2xl font-bold tracking-tight leading-tight md:mb-4 mb-2"
-							>
-								{title}
-							</h1>
-							<p
-								class="md:text-xl text-md font-medium text-neutral-500 mb-6 leading-normal"
-							>
-								{description}
-							</p>
-						</div>
-						<Image
-							class="md:rounded-xl rounded-lg md:mb-4 mb-2 w-full object-cover object-center h-auto"
-							src={heroImage}
-							format={"webp"}
-							height={1000}
-							aspectRatio={16 / 9}
-							alt="banner-hero-img"
-						/>
-					</div>
-					<hr class="divide-neutral-200 divide" />
-					<article
-						class="min-w-full lg:px-10 lg:py-5 py-5 prose prose-p:tracking-wide prose-p:leading-normal prose-headings:mb-2"
-					>
-						<slot />
-					</article>
-				</div>
-			</main>
-		</Container>
-		<Footer />
-	</body>
-</html>
+<script>
+	const scrollBtn = document.getElementById("to-top-btn") as HTMLButtonElement;
+	const targetHeader = document.getElementById("blog-hero") as HTMLDivElement;
+
+	function callback(entries: IntersectionObserverEntry[]) {
+		entries.forEach((entry) => {
+			// only show the scroll to top button when the heading is out of view
+			scrollBtn.dataset.show = (!entry.isIntersecting).toString();
+		});
+	}
+
+	scrollBtn.addEventListener("click", () => {
+		document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+	});
+
+	const observer = new IntersectionObserver(callback);
+	observer.observe(targetHeader);
+</script>
+
+<BaseLayout meta={{ title, description, articleDate, ogImage: socialImage }}>
+	<div class="gap-x-10 lg:flex lg:items-start">
+		{!!headings.length && <TOC headings={headings} />}
+		<article class="flex-grow break-words" data-pagefind-body>
+			<div id="blog-hero"><BlogHero content={post} /></div>
+			<div
+				class="prose-customTypography prose prose-sm mt-12 prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
+			>
+				<slot />
+			</div>
+		</article>
+	</div>
+	<button
+		id="to-top-btn"
+		class="z-90 fixed bottom-8 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 dark:bg-zinc-700 sm:end-8 sm:h-12 sm:w-12"
+		aria-label="Back to Top"
+		data-show="false"
+		><svg
+			xmlns="http://www.w3.org/2000/svg"
+			aria-hidden="true"
+			focusable="false"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke-width="2"
+			stroke="currentColor"
+			class="h-6 w-6"
+		>
+			<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"></path>
+		</svg>
+	</button>
+</BaseLayout>
