@@ -1,4 +1,12 @@
-# Clean architecture
+---
+title: "Clean Architecture"
+description: "Clean architecture as a good software development technique."
+publishDate: "9 Jun 2024"
+tags: ["coding", "productivity"]
+ogImage: "/social-card.png"
+---
+
+## Clean architecture
 
 Clean Architecture is a software design technique that emphasizes the separation of concerns, ensuring that systems are maintainable, scalable, and tested. By dividing code into discrete layers, each with a specific responsibility.
 
